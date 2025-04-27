@@ -1,7 +1,7 @@
 # Ollama Installation and Web UI Setup Scripts
 
 This package contains a set of scripts to automate the installation and management of Ollama and the Open WebUI on a Linux system.
-
+### Linux Distros Compatibility: Debian, RHEL, and Ubuntu
 ## Overview
 
 These scripts streamline the process of:
