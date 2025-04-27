@@ -103,3 +103,31 @@ This is only to install / update OLLAMA
 ```bash
 curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/install-ollama.sh | sudo bash
 ```
+
+
+## Accessing the Open WebUI
+
+Once the `install-webui-docker.sh` script (or the `automate-ollama-install.sh` script) has completed successfully, the Open WebUI will be running in a Docker container.
+
+The script attempts to detect your server's IP address(es) and will print the URLs where you can access the interface. Typically, these will be:
+
+* `http://localhost:3000` (if accessing from the same machine)
+* `http://127.0.0.1:3000` (if accessing from the same machine)
+* `http://<YOUR_SERVER_IP>:3000` (if accessing from another machine on the same network)
+
+Replace `<YOUR_SERVER_IP>` with the actual local IP address of the machine running Ollama and the Web UI.
+
+Open your web browser and navigate to one of these URLs. You should see the Open WebUI interface, ready to interact with your locally running Ollama models.
+
+## Using Ollama CLI
+
+After running the `install-ollama.sh` script, the `ollama` command-line tool is installed. You can use it directly from your terminal.
+
+Common commands:
+
+* **List local models:** `ollama list`
+* **Pull a model:** `ollama pull <model_name>` (e.g., `ollama pull llama3`)
+* **Run a model:** `ollama run <model_name>` (e.g., `ollama run llama3`)
+* **See help:** `ollama --help`
+
+*Note: If you just ran the installation script, you might need to log out and log back in, or run `newgrp ollama`, to use `ollama` commands without `sudo`.*
