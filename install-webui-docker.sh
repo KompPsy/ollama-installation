@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 FORWARDPORT=3000
 PORT=8080
