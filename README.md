@@ -61,5 +61,13 @@ These scripts streamline the process of:
 
 To run the complete automated installation and setup process:
 
+### Installs / Updates OLLAMA and OpenWeb UI 
+This is only to install / update OLLAMA and OpenWeb UI
 ```bash
 curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/automate-ollama-install.sh | sudo bash
+```
+###  Installs / Updates OLLAMA
+This is only to install / update OLLAMA
+```bash
+curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/install-ollama.sh | sudo bash
+```
