@@ -1,7 +1,7 @@
 #!/bin/sh
 # This script installs Ollama on Linux.
 # It detects the current operating system architecture and installs the appropriate version of Ollama.
-# This Script if from https://ollama.com/install.sh I only modified line 138 to 158 to enchance GPU
+# This Script is from https://ollama.com/install.sh I only modified line 138 to 158 to enchance GPU
 # performance
 
 set -eu
