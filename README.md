@@ -50,9 +50,8 @@ These scripts streamline the process of:
 
 ## Usage
 
-Ensure all scripts have execute permissions (`chmod +x *.sh`).
 
 To run the complete automated installation and setup process:
 
 ```bash
-./automate-ollama-install.sh
+curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/automate-ollama-install.sh | sudo bash
