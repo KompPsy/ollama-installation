@@ -48,10 +48,11 @@ These scripts streamline the process of:
 
 7.  **`automate-ollama-install.sh`**
     * Executes the scripts in the following order:
-        1.  `./stop-ollama.sh`
-        2.  `./install-ollama.sh`
-        3.  `./remove-webui-docker.sh`
-        4.  `./install-webui-docker.sh`
+        1.  `./install-docker.sh`  
+        2.  `./stop-ollama.sh`
+        3.  `./install-ollama.sh`
+        4.  `./remove-webui-docker.sh`
+        5.  `./install-webui-docker.sh`
     * This provides a complete teardown (of WebUI), installation/update (of Ollama), and setup sequence.
 
 ## Usage
