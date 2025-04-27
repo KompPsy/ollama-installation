@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Define the service name
 SERVICE_NAME="ollama.service"
