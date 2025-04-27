@@ -12,8 +12,13 @@ These scripts streamline the process of:
 * Automating the entire setup process with a single script.
 
 ## Scripts Included
-
-1.  **`install-ollama.sh`**
+1.  **`install-docker.sh`**
+    * Checks which Linux Distro
+    * Adds Docker repo
+    * Installs Docker and Docker dependencies
+    * Start and Enable Docker Services
+    
+3.  **`install-ollama.sh`**
     * Detects system architecture (amd64/arm64) and Linux distribution.
     * Downloads and installs the appropriate Ollama binary to `/usr/local/bin` (or similar standard bin directory).
     * Installs specific components for NVIDIA JetPack systems if detected.
@@ -22,7 +27,7 @@ These scripts streamline the process of:
     * Attempts to detect and install necessary NVIDIA CUDA drivers or AMD ROCm components if a compatible GPU is found and drivers are not already installed.
     * Sets up the Ollama service to start on boot.
 
-2.  **`install-webui-docker.sh`**
+4.  **`install-webui-docker.sh`**
     * Pulls the `ghcr.io/open-webui/open-webui:main` Docker image.
     * Runs a Docker container named `open-webui`.
     * Maps host port 3000 to container port 8080.
@@ -30,17 +35,17 @@ These scripts streamline the process of:
     * Configures the container network to allow connection to the Ollama service running on the host (`host.docker.internal`).
     * Sets the container to restart automatically (`--restart always`).
 
-3.  **`remove-webui-docker.sh`**
+5.  **`remove-webui-docker.sh`**
     * Finds the container ID for the running Open WebUI image (`ghcr.io/open-webui/open-webui:main`).
     * Stops and removes the found container.
     * Finds the image ID for the Open WebUI image.
     * Removes the Docker image *only if* no other containers (running or stopped) are using it.
 
-4.  **`stop-ollama.sh`**
+6.  **`stop-ollama.sh`**
     * Checks if the `ollama.service` systemd service is active.
     * If active, it stops the service using `sudo systemctl stop ollama.service`.
 
-5.  **`automate-ollama-install.sh`**
+7.  **`automate-ollama-install.sh`**
     * Executes the scripts in the following order:
         1.  `./stop-ollama.sh`
         2.  `./install-ollama.sh`
