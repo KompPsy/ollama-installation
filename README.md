@@ -1,7 +1,32 @@
 # Ollama Installation and Web UI Setup Scripts
-
+## Description
 This package contains a set of scripts to automate the installation and management of Ollama and the Open WebUI on a Linux system.
-### Linux Distros Compatibility: Debian, RHEL, and Ubuntu
+
+## Prerequisites
+Before running the installation scripts, ensure your system meets the following requirements:
+
+1.  **Operating System:** A Linux distribution. The scripts have specific support for:
+    * Debian-based systems (Debian, Ubuntu, etc.)
+    * RHEL-based systems (CentOS, Fedora, Rocky Linux, Amazon Linux, etc.)
+    * WSL2 (Windows Subsystem for Linux 2) is supported, but GPU passthrough requires specific configuration. WSL1 is *not* supported.
+2.  **Architecture:** amd64 (x86_64) or arm64 (aarch64).
+3.  **Internet Connection:** Required to download Ollama, Docker images, GPU drivers, and dependencies.
+4.  **Permissions:** You will need `sudo` privileges or root access to run the installation scripts, as they install software, manage services, and modify user groups.
+5.  **Required Tools:** The scripts depend on common command-line tools. The `install-ollama.sh` script specifically checks for:
+    * `curl`
+    * `awk`
+    * `grep`
+    * `sed`
+    * `tee`
+    * `xargs`
+    The `install-docker.sh` script may install prerequisites like `ca-certificates`, `curl`, `gnupg`, and `yum-utils`/`dnf-plugins-core` depending on your distribution.
+6.  **(Optional) GPU:**
+    * **NVIDIA:** Compatible NVIDIA GPU with appropriate drivers. The `install-ollama.sh` script attempts to detect and install CUDA drivers if needed (requires `lspci` or `lshw` to be installed for detection).
+    * **AMD:** Compatible AMD GPU. The `install-ollama.sh` script attempts to detect and install ROCm components if needed (requires `lspci` or `lshw` to be installed for detection).
+
+
+
+
 ## Overview
 
 These scripts streamline the process of:
