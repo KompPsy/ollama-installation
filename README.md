@@ -5,6 +5,7 @@ This package contains a set of scripts to automate the installation and manageme
 ## Overview
 
 These scripts streamline the process of:
+* Installs docker if needed
 * Installing Ollama, including necessary GPU drivers (NVIDIA/AMD) and systemd service configuration.
 * Running the Open WebUI using Docker.
 * Stopping the Ollama service.
