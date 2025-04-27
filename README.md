@@ -38,48 +38,55 @@ These scripts streamline the process of:
 * Removing the Open WebUI Docker container and image.
 * Automating the entire setup process with a single script.
 
-## Scripts Included
+## Scripts Detail
+
+
+Here's a brief overview of what each individual script does:
+
 1.  **`install-docker.sh`**
-    * Checks which Linux Distro
-    * Adds Docker repo
-    * Installs Docker and Docker dependencies
-    * Start and Enable Docker Services
-    
-3.  **`install-ollama.sh`**
+    * Checks if the `docker` command exists. If so, it exits assuming Docker is installed.
+    * Detects the Linux distribution (Debian/Ubuntu/RHEL-based).
+    * Installs prerequisite packages (`ca-certificates`, `curl`, `gnupg`, `yum-utils`/`dnf-plugins-core`).
+    * Adds Docker's official GPG key and package repository.
+    * Installs Docker Engine (`docker-ce`, `docker-ce-cli`, `containerd.io`, etc.).
+    * Starts and enables the Docker service (on RHEL-based systems; Debian/Ubuntu usually handle this automatically).
+    * Verifies the installation by running `docker --version`.
+
+2.  **`install-ollama.sh`**
     * Detects system architecture (amd64/arm64) and Linux distribution.
-    * Downloads and installs the appropriate Ollama binary to `/usr/local/bin` (or similar standard bin directory).
+    * Downloads the appropriate Ollama binary and installs it.
     * Installs specific components for NVIDIA JetPack systems if detected.
-    * Configures a systemd service (`ollama.service`) to run Ollama as a dedicated user (`ollama`) with specific environment variables (e.g., `OLLAMA_HOST`, `OLLAMA_CUDA`, cache size, vLLM settings).
+    * Checks for existing NVIDIA/AMD GPUs using `lspci`/`lshw` (if available).
+    * Attempts to install NVIDIA CUDA drivers or AMD ROCm components if a compatible GPU is found and drivers seem missing.
+    * Creates an `ollama` system user and group if they don't exist.
     * Adds the current user to the `ollama` group.
-    * Attempts to detect and install necessary NVIDIA CUDA drivers or AMD ROCm components if a compatible GPU is found and drivers are not already installed.
-    * Sets up the Ollama service to start on boot.
+    * Creates and configures a systemd service (`/etc/systemd/system/ollama.service`) with specific environment variables (e.g., `OLLAMA_HOST=0.0.0.0`, GPU settings, cache size).
+    * Enables and starts the `ollama.service` using `systemctl`.
 
-4.  **`install-webui-docker.sh`**
-    * Pulls the `ghcr.io/open-webui/open-webui:main` Docker image.
-    * Runs a Docker container named `open-webui`.
-    * Maps host port 3000 to container port 8080.
-    * Mounts a Docker volume (`open-webui`) to `/app/backend/data` inside the container for persistent data.
-    * Configures the container network to allow connection to the Ollama service running on the host (`host.docker.internal`).
-    * Sets the container to restart automatically (`--restart always`).
+3.  **`install-webui-docker.sh`**
+    * Defines variables for port mapping, container name, volume name, image name, and network settings.
+    * Executes `docker run` with appropriate options for detached mode, port mapping, host network access, volume mounting, container naming, and automatic restart.
+    * Specifies the `ghcr.io/open-webui/open-webui:main` image.
+    * Prints potential URLs to access the Web UI.
 
-5.  **`remove-webui-docker.sh`**
-    * Finds the container ID for the running Open WebUI image (`ghcr.io/open-webui/open-webui:main`).
-    * Stops and removes the found container.
-    * Finds the image ID for the Open WebUI image.
-    * Removes the Docker image *only if* no other containers (running or stopped) are using it.
+4.  **`remove-webui-docker.sh`**
+    * Finds the container ID of the running container based on the Open WebUI image.
+    * If found, stops (`docker stop`) and removes (`docker rm`) the container.
+    * Finds the image ID of the Open WebUI image.
+    * If found and no other containers use the image, removes the image (`docker rmi`).
 
-6.  **`stop-ollama.sh`**
-    * Checks if the `ollama.service` systemd service is active.
-    * If active, it stops the service using `sudo systemctl stop ollama.service`.
+5.  **`stop-ollama.sh`**
+    * Checks if the `ollama.service` is active using `systemctl is-active --quiet`.
+    * If active, stops the service using `sudo systemctl stop ollama.service`.
+    * Reports whether the service was stopped or was already inactive.
 
-7.  **`automate-ollama-install.sh`**
-    * Executes the scripts in the following order:
-        1.  `./install-docker.sh`  
-        2.  `./stop-ollama.sh`
-        3.  `./install-ollama.sh`
-        4.  `./remove-webui-docker.sh`
-        5.  `./install-webui-docker.sh`
-    * This provides a complete teardown (of WebUI), installation/update (of Ollama), and setup sequence.
+6.  **`automate-ollama-install.sh`**
+    * A simple script that executes the other scripts sequentially using `curl | sudo bash`:
+        1.  `install-docker.sh`
+        2.  `stop-ollama.sh`
+        3.  `install-ollama.sh`
+        4.  `remove-webui-docker.sh`
+        5.  `install-webui-docker.sh`
 
 ## Usage
 
