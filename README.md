@@ -7,6 +7,7 @@ This package contains a set of scripts to automate the installation and manageme
 These scripts streamline the process of:
 * Installs docker if needed
 * Installing Ollama, including necessary GPU drivers (NVIDIA/AMD) and systemd service configuration.
+  Ollama Install script is from https://ollama.com/install.sh. I modified service config in the script
 * Running the Open WebUI using Docker.
 * Stopping the Ollama service.
 * Removing the Open WebUI Docker container and image.
