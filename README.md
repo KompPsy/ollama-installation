@@ -62,7 +62,7 @@ Here's a brief overview of what each individual script does:
     * Adds the current user to the `ollama` group.
     * Creates and configures a systemd service (`/etc/systemd/system/ollama.service`) with specific environment variables (e.g., `OLLAMA_HOST=0.0.0.0`, GPU settings, cache size).
     * Enables and starts the `ollama.service` using `systemctl`.
-    * ### NOTE: This script is from https://ollama.com/install.sh which I modified the service service files EOF section to improve performance for my ollama workloads.
+    * #### NOTE: This script is from https://ollama.com/install.sh which I modified the service service files EOF section to improve performance for my ollama workloads.
 
 3.  **`install-webui-docker.sh`**
     * Defines variables for port mapping, container name, volume name, image name, and network settings.
