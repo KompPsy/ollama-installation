@@ -87,6 +87,9 @@ Here's a brief overview of what each individual script does:
         3.  `install-ollama.sh`
         4.  `remove-webui-docker.sh`
         5.  `install-webui-docker.sh`
+           
+6.  **`uninstall-ollama-open-webui.sh`**
+   * A simple script that executes to uninstall ollama and OpenWebUI`
 
 ## Usage
 
@@ -103,7 +106,6 @@ This is only to install / update OLLAMA
 ```bash
 curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/install-ollama.sh | sudo bash
 ```
-
 
 ## Accessing the Open WebUI
 
@@ -131,3 +133,11 @@ Common commands:
 * **See help:** `ollama --help`
 
 *Note: If you just ran the installation script, you might need to log out and log back in, or run `newgrp ollama`, to use `ollama` commands without `sudo`.*
+
+## Unintallation 
+### Uninstall Usage of Ollam abd Open WebUI:
+This script uninstalls OLLAMA and OpenUI
+```bash
+curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/uninstall-ollama-open-webui.sh | sudo bash
+```
+
