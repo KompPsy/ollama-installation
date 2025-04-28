@@ -136,7 +136,7 @@ Common commands:
 
 ## Uninstallation 
 ### Uninstall Usage of Ollam and Open WebUI:
-This script uninstalls OLLAMA and OpenUI
+This script uninstalls OLLAMA and Open WebUI
 ```bash
 curl -sSL https://raw.githubusercontent.com/KompPsy/ollama-installation/refs/heads/main/uninstall-ollama-open-webui.sh | sudo bash
 ```
