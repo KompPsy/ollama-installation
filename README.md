@@ -134,7 +134,7 @@ Common commands:
 
 *Note: If you just ran the installation script, you might need to log out and log back in, or run `newgrp ollama`, to use `ollama` commands without `sudo`.*
 
-## Unintallation 
+## Uninstallation 
 ### Uninstall Usage of Ollam abd Open WebUI:
 This script uninstalls OLLAMA and OpenUI
 ```bash
