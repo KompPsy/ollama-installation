@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OLLAMAlibPATH=/usr/local/lib/ollama
-OLLAMASHAREPATH=usr/share/ollama
+OLLAMASHAREPATH=/usr/share/ollama
 USERGROUP=ollama
 OLLAMASERVICE=/etc/systemd/system/ollama.service
 VOLUME_NAME="open-webui"
